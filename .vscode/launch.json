@@ -1,0 +1,31 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "LostAndFound - Website",
+            "request": "launch",
+            "mainClass": "Main",
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal"
+        },
+        {
+            "type": "java",
+            "name": "LostAndFound - MySQL",
+            "request": "launch",
+            "mainClass": "ConsoleMain",
+            "args": "--mysql",
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal"
+        },
+        {
+            "type": "java",
+            "name": "LostAndFound - Preview",
+            "request": "launch",
+            "mainClass": "ConsoleMain",
+            "args": "--preview",
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal"
+        }
+    ]
+}

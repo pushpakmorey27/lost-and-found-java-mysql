@@ -1,0 +1,17 @@
+# Java compilation and test output
+bin/
+build/
+*.class
+*.log
+
+# Local database credentials must never be committed
+database.properties
+.env
+.env.*
+!.env.example
+
+# Editor and operating-system files
+.idea/
+*.iml
+.DS_Store
+Thumbs.db

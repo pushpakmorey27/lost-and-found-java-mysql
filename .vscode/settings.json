@@ -1,0 +1,19 @@
+{
+    "java.project.sourcePaths": [
+        "src/start",
+        "src/items",
+        "src/database",
+        "src/website",
+        "src/console"
+    ],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": [
+        "lib/*.jar"
+    ],
+    "java.debug.settings.console": "integratedTerminal",
+    "files.exclude": {
+        "**/bin": true,
+        "**/.vscode": true,
+        "**/.gitignore": true
+    }
+}

@@ -1,0 +1,165 @@
+/*
+ * WHAT: Make the same website readable with colours, spacing and layout.
+ * CSS is page styling, not Java. It is the agreed addition for the website.
+ * A dot means an HTML class: .primary styles elements with class="primary".
+ * Braces hold rules. For example, color changes text and padding adds inner space.
+ * These comments explain the existing design; the design rules are unchanged.
+ */
+
+/* Shared colour names. Reusing a name keeps the same colour across all pages. */
+:root {
+    --ink: #203328;
+    --muted: #667168;
+    --green: #216044;
+    --line: #dfe5de;
+    --paper: #ffffff;
+    --background: #f5f6f1;
+}
+/* Page-wide defaults: element sizing, font, background and links. */
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--background); color: var(--ink); font: 15px/1.55 "Segoe UI", Arial, sans-serif; }
+a { color: var(--green); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { width: min(1240px, calc(100% - 64px)); margin: 0 auto; }
+/* Header and navigation at the top of every page. */
+header { background: var(--paper); border-bottom: 1px solid var(--line); }
+.topbar { display: flex; align-items: center; justify-content: space-between; min-height: 92px; gap: 16px; }
+.brand { display: flex; gap: 13px; align-items: center; color: var(--ink); font-weight: 700; font-size: 21px; letter-spacing: -.4px; }
+.brand:hover { text-decoration: none; }
+.brand-mark { display: grid; place-items: center; width: 45px; height: 45px; background: var(--green); color: white; border-radius: 12px; font-size: 17px; letter-spacing: 1px; }
+.brand small { display: block; font-weight: 400; font-size: 12px; color: var(--muted); letter-spacing: .2px; }
+.connection { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--green); background: #eef5ee; border: 1px solid #dbe9dc; border-radius: 20px; padding: 6px 12px; white-space: nowrap; }
+.connection span { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+nav { display: flex; gap: 29px; overflow-x: auto; }
+nav a { white-space: nowrap; display: block; padding: 14px 0; color: var(--muted); font-size: 14px; border-bottom: 3px solid transparent; }
+nav a[aria-current] { border-color: var(--green); color: var(--green); font-weight: 600; }
+nav a:hover { text-decoration: none; color: var(--green); }
+main { min-height: calc(100vh - 238px); padding-top: 34px; padding-bottom: 42px; }
+h1, h2, h3, p { margin-top: 0; }
+h1 { font-size: clamp(28px, 3.1vw, 40px); line-height: 1.2; letter-spacing: -1.2px; margin-bottom: 14px; font-weight: 650; }
+h2 { font-size: 18px; line-height: 1.35; margin-bottom: 6px; font-weight: 650; letter-spacing: -.2px; }
+h3 { font-size: 17px; }
+p { margin-bottom: 16px; }
+/* The home-page introduction. flex places its text and buttons beside each other. */
+.hero { padding: 32px 36px; background: #e9efdf; border: 1px solid #dbe3d1; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; gap: 24px; }
+.eyebrow { font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--green); font-weight: 700; margin-bottom: 15px; }
+.hero p:last-child { color: #55664f; margin-bottom: 0; }
+.hero-actions { display: flex; flex-direction: column; gap: 11px; min-width: 214px; }
+/* Shared button sizes and colours. :hover changes appearance under the pointer. */
+button, .button { display: inline-flex; align-items: center; justify-content: center; padding: 11px 18px; border-radius: 6px; font: 600 14px/1.4 "Segoe UI", Arial, sans-serif; border: 1px solid transparent; cursor: pointer; text-align: center; }
+.button:hover { text-decoration: none; }
+.primary { background: var(--green); color: white; border-color: var(--green); }
+.primary:hover { background: #184c35; }
+.secondary { color: var(--green); background: white; border-color: #bbcabb; }
+.secondary:hover { background: #f7faf4; }
+.danger { background: #a3322f; color: white; }
+.danger:hover { background: #852522; }
+/* grid lays out the three summary boxes as three equal columns. */
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin: 23px 0 29px; }
+.stat { display: flex; align-items: center; gap: 19px; padding: 22px 25px; border-radius: 9px; border: 1px solid var(--line); background: white; }
+.stat-number { font-size: 36px; line-height: 1; min-width: 27px; font-weight: 600; letter-spacing: -1.5px; }
+.stat.lost .stat-number { color: #99632b; }
+.stat.found .stat-number { color: #28614a; }
+.stat.returned .stat-number { color: #53687b; }
+.stat h2 { font-size: 14px; margin: 0 0 2px; }
+.stat p { color: var(--muted); font-size: 12px; margin: 0; }
+.panel { background: white; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.section-title { padding: 23px 25px 19px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.section-title p { margin: 0; color: var(--muted); font-size: 13px; }
+.section-title h2 { margin-bottom: 3px; }
+.subtle { font-size: 12px; color: var(--muted); }
+.search { display: flex; align-items: flex-end; gap: 17px; padding: 0 25px 23px; }
+.search > div { flex: 1; }
+.search label { margin-top: 0; }
+.search .check { min-height: 42px; margin: 0; }
+.search > a { margin-bottom: 10px; font-size: 13px; }
+/* Form labels and entry boxes. The Java FormInput class still checks their values. */
+label { display: block; font-size: 13px; font-weight: 600; margin: 18px 0 7px; }
+input, select, textarea { font: inherit; font-size: 14px; color: var(--ink); border: 1px solid #cbd4ca; background: white; border-radius: 6px; padding: 10px 12px; width: 100%; min-height: 43px; }
+input::placeholder, textarea::placeholder { color: #8a938b; }
+input[type=checkbox] { width: 16px; min-height: 16px; height: 16px; margin: 0; accent-color: var(--green); flex: 0 0 auto; }
+.check { display: flex; gap: 9px; align-items: center; font-size: 13px; font-weight: 400; }
+textarea { resize: vertical; }
+:focus-visible { outline: 3px solid #8aaf94; outline-offset: 3px; }
+/* Tables show database rows. Wide tables can scroll on a narrow screen. */
+.table-scroll { width: 100%; overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; }
+th { background: #f8f9f5; color: #6c786e; font-size: 11px; text-transform: uppercase; letter-spacing: .6px; font-weight: 600; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 13px 19px; white-space: nowrap; }
+td { padding: 18px 19px; border-bottom: 1px solid #edf0e9; vertical-align: top; overflow-wrap: anywhere; }
+tbody tr:last-child td { border-bottom: 0; }
+tbody tr:hover { background: #fcfdf9; }
+td:first-child, th:first-child { padding-left: 25px; }
+td small { display: block; color: var(--muted); line-height: 1.55; font-size: 11px; margin-top: 6px; max-width: 255px; }
+.item-heading { display: flex; align-items: center; gap: 9px; }
+.item-heading strong { font-size: 13px; font-weight: 600; }
+.badge { display: inline-block; white-space: nowrap; font-size: 9px; font-weight: 700; border-radius: 4px; padding: 3px 7px; letter-spacing: .5px; }
+.badge.lost { background: #fbefdd; color: #865318; }
+.badge.found { background: #e7f1e6; color: #276145; }
+.badge.open { background: #edf3e6; color: #4c6c34; }
+.badge.resolved { background: #edf0f2; color: #5a6977; }
+.date { white-space: nowrap; font-size: 12px; }
+.actions { display: flex; flex-wrap: wrap; column-gap: 13px; row-gap: 7px; min-width: 125px; font-size: 11px; }
+.actions form, .actions .action-main { flex-basis: 100%; }
+.danger-link { color: #a3453a; }
+.link-button { padding: 0; border: 0; border-radius: 0; background: none; color: var(--green); font-size: 11px; font-weight: 600; }
+.link-button:hover { text-decoration: underline; }
+.action-main { font-weight: 600; }
+.panel-note { margin: 0; padding: 15px 25px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; background: #fdfefa; }
+/* The other pages reuse panels and form layouts. */
+.page-heading { margin: 4px 0 27px; }
+.page-heading h1 { font-size: 30px; margin-bottom: 9px; }
+.page-heading p { color: var(--muted); }
+.two-columns { display: grid; grid-template-columns: 360px 1fr; gap: 25px; align-items: start; }
+.two-columns.equal { grid-template-columns: 1fr 1fr; }
+.form-panel { padding: 27px 29px; }
+.form-panel h2 { margin-bottom: 14px; }
+.form-panel form > button { margin-top: 23px; width: 100%; }
+.narrow { max-width: 730px; }
+.field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+.hint { font-size: 12px; color: var(--muted); margin: 6px 0 0; }
+.form-panel > .hint { margin-top: 21px; }
+.form-actions { display: flex; align-items: center; gap: 24px; margin-top: 26px; }
+.form-actions a { font-size: 14px; }
+.info { border: 1px solid #dce5d7; background: #f2f6ed; border-radius: 6px; padding: 15px 18px; font-size: 13px; color: #52664b; margin: 21px 0; }
+.notice { border: 1px solid #c6d9bf; background: #edf6e7; color: #30552b; padding: 14px 19px; font-size: 14px; border-radius: 7px; margin-bottom: 24px; }
+.empty { text-align: center; padding: 45px 20px; color: var(--muted); border-top: 1px solid var(--line); }
+.empty p { margin-bottom: 0; }
+.error { margin-top: 20px; }
+.error h1 { font-size: 28px; }
+.error .button { margin-top: 20px; }
+footer { padding: 20px 0 27px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 14px; font-size: 12px; color: var(--muted); }
+.skip { position: absolute; left: -9999px; }
+.skip:focus { position: fixed; top: 8px; left: 8px; padding: 10px; background: white; z-index: 10; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+/* Media rules adapt the same page when the available window becomes narrower. */
+@media (max-width: 1000px) {
+    .wrap { width: calc(100% - 40px); }
+    .stat { padding: 20px 17px; gap: 12px; }
+    .two-columns { grid-template-columns: 320px 1fr; gap: 18px; }
+    .search { flex-wrap: wrap; }
+    .search > div { flex-basis: 100%; }
+}
+@media (max-width: 700px) {
+    .wrap { width: calc(100% - 28px); }
+    .topbar { min-height: 80px; }
+    .brand { font-size: 18px; }
+    .brand-mark { width: 38px; height: 38px; }
+    .connection { font-size: 10px; padding: 5px 8px; }
+    nav { gap: 22px; }
+    nav a { font-size: 13px; }
+    main { padding-top: 22px; }
+    .hero { padding: 25px; display: block; }
+    .hero-actions { margin-top: 23px; }
+    .desktop-break { display: none; }
+    .stats { grid-template-columns: 1fr; gap: 10px; margin: 16px 0 22px; }
+    .stat { padding: 16px 23px; }
+    .stat-number { min-width: 37px; font-size: 29px; }
+    .two-columns, .two-columns.equal, .field-grid { grid-template-columns: 1fr; }
+    .field-grid { gap: 0; }
+    .form-panel { padding: 23px; }
+    .section-title { padding: 20px; }
+    .search { padding: 0 20px 21px; gap: 12px; }
+    .search .check { flex-basis: 100%; }
+    .panel-note { padding: 14px 20px; }
+    footer { flex-direction: column; gap: 3px; }
+}
